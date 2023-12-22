@@ -58,9 +58,15 @@ const questions = [
 
 var startButton = document.getElementById("start-button");
 var startScreen = document.getElementById("start-screen");
+var timerElement = document.getElementById("time");
+
+var timer;
+var timeLimit = 60;
+var timeLeft;
 
 startButton.addEventListener("click", function () {
   startScreen.style.display = "none";
+  startTimer();
 });
 
 // !Landing page:
@@ -70,6 +76,30 @@ startButton.addEventListener("click", function () {
 //! Landing page goes away
 // Timer starts
 // The first question appears (with its answers)
+
+function startTimer() {
+  timeLeft = timeLimit;
+  displayTime();
+
+  timer = setInterval(function () {
+    timeLeft--;
+    console.log(timeLeft);
+
+    if (timeLeft <= 0) {
+      clearInterval(timer);
+      gameOver();
+    }
+    displayTime();
+  }, 1000);
+}
+
+function displayTime() {
+  timerElement.textContent = timeLeft;
+}
+
+function gameOver() {
+  console.log("GAME OVER!");
+}
 
 // For each question:
 // User clicks an answer
