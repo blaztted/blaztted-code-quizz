@@ -10,6 +10,47 @@
 // When the game ends, it should display their score and give the user the ability to save their initials and their score
 //-------------------------------//
 // Set of questions --> array of objects
+const questions = [
+  {
+    id: 1,
+    question: "Who will be the King of Pirates? ",
+    options: ["Buggy", "Katakuri", "Luffy", "Boa Hancock"],
+    correctAnswer: "Luffy",
+  },
+
+  {
+    id: 2,
+    question: "How old was Luffy pre-time skip?",
+    options: ["16", "17", "18", "19"],
+    correctAnswer: "17",
+  },
+
+  {
+    id: 3,
+    question: "What is the name of the Straw Hats first ship?",
+    options: ["Going Merry", "Merry Go", "Merry", "Thousand Sunny"],
+    correctAnswer: "Going Merry",
+  },
+
+  {
+    id: 4,
+    question: "What is the name of Brook's old crew?",
+    options: [
+      "The Roshio Pirates",
+      "The On-Air Pirates",
+      "The Rumbar Pirates",
+      "The Spade Pirates",
+    ],
+    correctAnswer: "The Rumbar Pirates",
+  },
+  {
+    id: 5,
+    question: "Which sword does Zoro use with his mouth?",
+    options: ["Wado Ichimonji", "Shusui", "Sandai Kitetsu", "Enma"],
+    correctAnswer: "Wado Ichimonji",
+  },
+];
+
 // Each question needs the following:
 // Question text
 // Set of answers
