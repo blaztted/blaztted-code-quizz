@@ -9,7 +9,12 @@
 
 // When the game ends, it should display their score and give the user the ability to save their initials and their score
 //-------------------------------//
-// Set of questions --> array of objects
+//! Set of questions --> array of objects
+// Each question needs the following:
+// Question text
+// Set of answers
+// Which answer is correct
+
 const questions = [
   {
     id: 1,
@@ -51,17 +56,18 @@ const questions = [
   },
 ];
 
-// Each question needs the following:
-// Question text
-// Set of answers
-// Which answer is correct
+var startButton = document.getElementById("start-button");
+var startScreen = document.getElementById("start-screen");
 
-// Landing page:
-// Explanation of the quiz
-// Start button
+startButton.addEventListener("click", function () {
+  startScreen.style.display = "none";
+});
 
-// Click the start button:
-// Landing page goes away
+// !Landing page:
+// !Explanation of the quiz
+// !Start button
+// !Click the start button:
+//! Landing page goes away
 // Timer starts
 // The first question appears (with its answers)
 
