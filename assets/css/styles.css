@@ -1,9 +1,16 @@
 body {
   font-family: Arial;
   font-size: 120%;
+  background-image: url("../images/trafalgar-law-4000x2480-16023.jpeg");
+  margin: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  position: relative;
 }
 
-a {
+::-webkit-validation-bubble-message a {
   color: #563d7c;
   text-decoration: none;
   transition: color 0.1s;
