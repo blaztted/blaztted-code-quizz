@@ -20,6 +20,11 @@
 // !Click the start button:
 //! Landing page goes away
 //! Timer starts
+//! The first question appears (with its answers)
+
+//! For each question:
+// !User clicks an answer
+// !Their choice is compared to the correct answer as stored in the question's object
 
 const questions = [
   {
@@ -128,8 +133,10 @@ function checkAnswer(userChoice) {
 
   if (userChoice === currentQuestion.correctAnswer) {
     console.log("Correct!");
+    showFeedback("Correct!", "green");
   } else {
     console.log("Incorrect!");
+    showFeedback("Incorrect! -10 seconds", "red");
     timeLeft -= 10;
     if (timeLeft < 0) {
       timeLeft = 0;
@@ -146,11 +153,12 @@ function checkAnswer(userChoice) {
   }
 }
 
-// The first question appears (with its answers)
+function showFeedback(message, color) {
+  feedback.textContent = message;
+  feedback.style.color = color;
+  feedback.classList.remove("hide");
+}
 
-// For each question:
-// User clicks an answer
-// Their choice is compared to the correct answer as stored in the question's object
 // If correct, tell them
 // If incorrect, tell them AND subtract time from the timer
 // Optional: play a sound for correct or incorrect
