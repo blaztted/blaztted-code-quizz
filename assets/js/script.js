@@ -10,10 +10,16 @@
 // When the game ends, it should display their score and give the user the ability to save their initials and their score
 //-------------------------------//
 //! Set of questions --> array of objects
-// Each question needs the following:
-// Question text
-// Set of answers
-// Which answer is correct
+//! Each question needs the following:
+//! Question text
+//! Set of answers
+//! Which answer is correct
+// !Landing page:
+// !Explanation of the quiz
+// !Start button
+// !Click the start button:
+//! Landing page goes away
+//! Timer starts
 
 const questions = [
   {
@@ -60,6 +66,11 @@ var startButton = document.getElementById("start-button");
 var startScreen = document.getElementById("start-screen");
 var timerElement = document.getElementById("time");
 
+var currentQuestionIndex = 0;
+var questionsContainer = document.getElementById("questions");
+var questionTitle = document.getElementById("question-title");
+var choicesContainer = document.getElementById("choices");
+
 var timer;
 var timeLimit = 60;
 var timeLeft;
@@ -67,15 +78,8 @@ var timeLeft;
 startButton.addEventListener("click", function () {
   startScreen.style.display = "none";
   startTimer();
+  showQuestion();
 });
-
-// !Landing page:
-// !Explanation of the quiz
-// !Start button
-// !Click the start button:
-//! Landing page goes away
-// Timer starts
-// The first question appears (with its answers)
 
 function startTimer() {
   timeLeft = timeLimit;
@@ -100,6 +104,49 @@ function displayTime() {
 function gameOver() {
   console.log("GAME OVER!");
 }
+
+function showQuestion() {
+  var currentQuestion = questions[currentQuestionIndex];
+  questionTitle.textContent = currentQuestion.question;
+
+  choicesContainer.innerHTML = "";
+
+  for (var i = 0; i < currentQuestion.options.length; i++) {
+    var optionButton = document.createElement("button");
+    optionButton.textContent = currentQuestion.options[i];
+    optionButton.addEventListener("click", function () {
+      checkAnswer(this.textContent);
+    });
+    choicesContainer.appendChild(optionButton);
+  }
+
+  questionsContainer.classList.remove("hide");
+}
+
+function checkAnswer(userChoice) {
+  var currentQuestion = questions[currentQuestionIndex];
+
+  if (userChoice === currentQuestion.correctAnswer) {
+    console.log("Correct!");
+  } else {
+    console.log("Incorrect!");
+    timeLeft -= 10;
+    if (timeLeft < 0) {
+      timeLeft = 0;
+    }
+    displayTime();
+  }
+
+  currentQuestionIndex++;
+  if (currentQuestionIndex < questions.length) {
+    showQuestion();
+  } else {
+    clearInterval(timer);
+    gameOver();
+  }
+}
+
+// The first question appears (with its answers)
 
 // For each question:
 // User clicks an answer
