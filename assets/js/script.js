@@ -29,6 +29,17 @@
 // !If incorrect, tell them AND subtract time from the timer
 // !Optional: play a sound for correct or incorrect
 // !Either way, the question disappears after a few seconds and the next question appears
+//! After the last question:
+// !Timer stops
+// !Question disappears
+// !Form appears for user to enter their initials
+// !Display their score
+
+// !User submits form
+// !Initials and score get stored in local storage
+// !User is taken to the high scores page
+// !High scores are listed, sorted highest to lowest
+// !User has option to take the quiz again
 
 const questions = [
   {
@@ -177,7 +188,7 @@ function showFeedback(message, color) {
 }
 
 submitButton.addEventListener("click", function () {
-  var initials = initialsInput.value.trim();
+  var initials = initialsInput.value.trim().toUpperCase();
 
   if (initials !== "") {
     var scores = JSON.parse(localStorage.getItem("highScores")) || [];
@@ -186,15 +197,3 @@ submitButton.addEventListener("click", function () {
     window.location.href = "highscores.html";
   }
 });
-
-// After the last question:
-// Timer stops
-// Question disappears
-// Form appears for user to enter their initials
-// Display their score
-
-// User submits form
-// Initials and score get stored in local storage
-// User is taken to the high scores page
-// High scores are listed, sorted highest to lowest
-// User has option to take the quiz again
