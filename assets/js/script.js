@@ -25,6 +25,9 @@
 //! For each question:
 // !User clicks an answer
 // !Their choice is compared to the correct answer as stored in the question's object
+// !If correct, tell them
+// !If incorrect, tell them AND subtract time from the timer
+// !Optional: play a sound for correct or incorrect
 
 const questions = [
   {
@@ -75,6 +78,7 @@ var currentQuestionIndex = 0;
 var questionsContainer = document.getElementById("questions");
 var questionTitle = document.getElementById("question-title");
 var choicesContainer = document.getElementById("choices");
+var feedbackContainer = document.getElementById("feedback");
 
 var timer;
 var timeLimit = 60;
@@ -126,6 +130,7 @@ function showQuestion() {
   }
 
   questionsContainer.classList.remove("hide");
+  feedbackContainer.classList.add("hide");
 }
 
 function checkAnswer(userChoice) {
@@ -144,13 +149,17 @@ function checkAnswer(userChoice) {
     displayTime();
   }
 
-  currentQuestionIndex++;
-  if (currentQuestionIndex < questions.length) {
-    showQuestion();
-  } else {
-    clearInterval(timer);
-    gameOver();
-  }
+  setTimeout(function () {
+    questionsContainer.classList.add("hide");
+    feedbackContainer.classList.add("hide");
+    currentQuestionIndex++;
+    if (currentQuestionIndex < questions.length) {
+      showQuestion();
+    } else {
+      clearInterval(timer);
+      gameOver();
+    }
+  }, 2000);
 }
 
 function showFeedback(message, color) {
@@ -159,10 +168,7 @@ function showFeedback(message, color) {
   feedback.classList.remove("hide");
 }
 
-// If correct, tell them
-// If incorrect, tell them AND subtract time from the timer
-// Optional: play a sound for correct or incorrect
-// Either way, the question disappears after a few seconds and the next question appears
+// !Either way, the question disappears after a few seconds and the next question appears
 
 // After the last question:
 // Timer stops
