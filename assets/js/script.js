@@ -167,7 +167,7 @@ function checkAnswer(userChoice) {
       clearInterval(timer);
       gameOver();
     }
-  }, 2000);
+  }, 500);
 }
 
 function showFeedback(message, color) {
