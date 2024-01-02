@@ -1,4 +1,4 @@
-# blaztted-code-quizz# Blaztted Code Quizz
+# Blaztted Code Quizz
 
 ## The Repository
 
