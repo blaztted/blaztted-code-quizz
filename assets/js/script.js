@@ -28,6 +28,7 @@
 // !If correct, tell them
 // !If incorrect, tell them AND subtract time from the timer
 // !Optional: play a sound for correct or incorrect
+// !Either way, the question disappears after a few seconds and the next question appears
 
 const questions = [
   {
@@ -79,6 +80,10 @@ var questionsContainer = document.getElementById("questions");
 var questionTitle = document.getElementById("question-title");
 var choicesContainer = document.getElementById("choices");
 var feedbackContainer = document.getElementById("feedback");
+var endScreen = document.getElementById("end-screen");
+var initialsInput = document.getElementById("initials");
+var submitButton = document.getElementById("submit");
+var finalScore = document.getElementById("final-score");
 
 var timer;
 var timeLimit = 60;
@@ -111,6 +116,9 @@ function displayTime() {
 }
 
 function gameOver() {
+  questionsContainer.classList.add("hide");
+  endScreen.classList.remove("hide");
+  finalScore.textContent = timeLeft;
   console.log("GAME OVER!");
 }
 
@@ -168,7 +176,16 @@ function showFeedback(message, color) {
   feedback.classList.remove("hide");
 }
 
-// !Either way, the question disappears after a few seconds and the next question appears
+submitButton.addEventListener("click", function () {
+  var initials = initialsInput.value.trim();
+
+  if (initials !== "") {
+    var scores = JSON.parse(localStorage.getItem("highScores")) || [];
+    scores.push({ initials: initials, score: timeLeft });
+    localStorage.setItem("highScores", JSON.stringify(scores));
+    window.location.href = "highscores.html";
+  }
+});
 
 // After the last question:
 // Timer stops
